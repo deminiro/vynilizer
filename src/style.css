@@ -9,6 +9,7 @@ body {
   background-color: lightblue;
   margin: 0;
   padding-top: 20px;
+  padding-left: 20px;
 }
 
 .vinil-stick {
@@ -27,7 +28,7 @@ body {
 
 .vinil-plate {
   position: absolute;
-  padding: 2px 0 0 2px;
+  padding: 3px 0 0 3px;
   width: 395px;
   height: 395px;
   z-index: 2;

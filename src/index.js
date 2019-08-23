@@ -3,7 +3,6 @@ import './style.css';
 
 const btnSwitchOn = document.getElementById('btn-switch-on');
 const vinilPlate = document.getElementById('vinil-plate');
-const vinilStick = document.getElementById('vinil-stick');
 const timeOfSound = document.getElementById('time-of-sound');
 const containerWithPlates = document.getElementById('container-with-plates');
 let sound;
@@ -14,7 +13,6 @@ const makeSound = (soundId) => {
   let soundDurationLeft = 0;
   let soundDuration = 0;
   let minutes = 0;
-  let angleOfStick = -29;
   let twist;
 
   if (soundId === 'vinil-plate-hype') {
@@ -35,15 +33,17 @@ const makeSound = (soundId) => {
       autoplay: false,
       volume: 0.1,
     });
+  } else if (soundId === 'vinil-plate-bandito') {
+    sound = new Howl({
+      src: ['../src/assets/twenty-one-pilots-bandito.mp3'],
+      autoplay: false,
+      volume: 0.1,
+    });
   }
 
   function soundPlay() {
     sound.play();
     stateSound = 'play';
-    setInterval(() => {
-      vinilStick.style.transform = `rotate(${angleOfStick}deg)`;
-      angleOfStick -= 1;
-    }, sound.duration() / 1000);
   }
 
   function soundStop() {
@@ -58,6 +58,12 @@ const makeSound = (soundId) => {
     soundDurationLeft = 0;
     soundDuration = 0;
     minutes = 0;
+  }
+
+  function clearInterv(event) {
+    if (event.target.id.indexOf('vinil-plate-') !== -1) {
+      clearInterval(twist);
+    }
   }
 
   const actionForPlate = (event) => {
@@ -75,7 +81,7 @@ const makeSound = (soundId) => {
             minutes += 1;
             soundDurationLeft = 0;
           }
-          if (soundDuration >= sound.duration()) resetSound();
+          if (soundDuration >= sound.duration() && sound.duration() !== 0) resetSound();
         }, 50);
       } else if (stateSound === 'reset') stateSound = 'stop';
       else if (stateSound === 'play') soundStop();
@@ -83,13 +89,16 @@ const makeSound = (soundId) => {
   };
 
   btnSwitchOn.addEventListener('click', actionForPlate);
+  containerWithPlates.addEventListener('click', clearInterv);
 };
 
 const chooseSound = (event) => {
-  event.preventDefault();
-  vinilPlate.style.opacity = '1';
-  if (sound !== undefined) sound.stop();
-  makeSound(event.target.id);
+  if (event.target.id.indexOf('vinil-plate-') !== -1) {
+    event.preventDefault();
+    vinilPlate.style.opacity = '1';
+    if (sound !== undefined) sound.stop();
+    makeSound(event.target.id);
+  }
 };
 
 containerWithPlates.addEventListener('click', chooseSound);
