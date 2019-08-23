@@ -1,0 +1,48 @@
+{
+  "name": "deminiro-2019q1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint src/",
+    "dev": "webpack-dev-server --mode development --watch",
+    "build": "webpack --mode production",
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deminiro/vynilizer.git"
+  },
+  "keywords": [
+    "youtube"
+  ],
+  "author": "deminiro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deminiro/vynilizer/issues"
+  },
+  "homepage": "https://github.com/deminiro/vynilizer#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "eslint": "^6.2.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-import": "^2.18.2",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^2.1.0",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1",
+    "webpack-dev-server": "^3.3.1"
+  },
+  "dependencies": {
+    "howler": "^2.1.2"
+  }
+}

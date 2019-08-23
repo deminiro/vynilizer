@@ -1,0 +1,65 @@
+body {
+  user-select: none;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 50% 50%
+}
+
+.container {
+  background-color: lightblue;
+  margin: 0;
+  padding-top: 20px;
+}
+
+.vinil-stick {
+  height: 400px;
+  position: relative;
+  z-index: 5;
+  transform: rotate(-29deg);
+  margin-left: 100px;
+}
+
+.vinil-platform {
+  width: 400px;
+  height: 400px;
+  z-index: 1;
+}
+
+.vinil-plate {
+  position: absolute;
+  padding: 2px 0 0 2px;
+  width: 395px;
+  height: 395px;
+  z-index: 2;
+  opacity: 0;
+}
+
+.vinil-button-off {
+  position: relative;
+  right: 70px;
+  bottom: 16px;
+  display: none;
+}
+
+.container-with-plates {
+  list-style: none;
+  display: flex
+}
+
+.container-to-choose-sound>h3 {
+  text-align: center;
+}
+
+.vinil-plate-sound {
+  width: 120px;
+  height: 120px;
+}
+
+.li-plates {
+  text-align: center;
+  margin-right: 40px;
+}
+
+.sound-name {
+  margin: 0
+}
