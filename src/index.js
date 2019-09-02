@@ -5,6 +5,7 @@ const btnSwitchOn = document.getElementById('btn-switch-on');
 const vinilPlate = document.getElementById('vinil-plate');
 const timeOfSound = document.getElementById('time-of-sound');
 const containerWithPlates = document.getElementById('container-with-plates');
+const nameForPlate = document.getElementById('name-for-plate');
 let sound;
 
 const makeSound = (soundId) => {
@@ -73,6 +74,7 @@ const makeSound = (soundId) => {
         soundPlay();
         twist = setInterval(() => {
           vinilPlate.style.transform = `rotate(${degreesForTwist}deg)`;
+          nameForPlate.style.transform = `rotate(${degreesForTwist}deg)`;
           degreesForTwist += 3;
           soundDurationLeft += 0.05;
           soundDuration += 0.05;
@@ -92,12 +94,25 @@ const makeSound = (soundId) => {
   containerWithPlates.addEventListener('click', clearInterv);
 };
 
+const makeNameForPlate = (songId) => {
+  const nameOfSong = songId.replace('vinil-plate-', '');
+  const nameAsArray = nameOfSong.split('');
+  for (let i = 0; i < nameAsArray.length; i += 1) {
+    if (i === 0) nameForPlate.innerHTML = `<span class="char${i + 1}">${nameAsArray[i]}</span>`;
+    else nameForPlate.innerHTML += `<span class="char${i + 1}">${nameAsArray[i]}</span>`;
+    nameForPlate.children[nameForPlate.children.length - 1].style.transform = `rotate(${4 * i}deg)`;
+    nameForPlate.children[nameForPlate.children.length - 1].style.zIndex = '500';
+  }
+};
+
 const chooseSound = (event) => {
   if (event.target.id.indexOf('vinil-plate-') !== -1) {
+    const songId = event.target.id;
     event.preventDefault();
     vinilPlate.style.opacity = '1';
     if (sound !== undefined) sound.stop();
-    makeSound(event.target.id);
+    makeSound(songId);
+    makeNameForPlate(songId);
   }
 };
 
